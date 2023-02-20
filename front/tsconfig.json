@@ -1,0 +1,12 @@
+{
+  "include": ["src", "tests", "vite.config.ts", "jest.config.ts"],
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": "dist",
+    "jsx": "react",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "strict": true
+  }
+}
