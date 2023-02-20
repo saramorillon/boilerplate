@@ -700,10 +700,10 @@
     eslint-plugin-react-hooks "*"
     eslint-plugin-testing-library "*"
 
-"@saramorillon/logger@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@saramorillon/logger/-/logger-1.2.0.tgz#1b8ec78f79a5833fde916799a59daf0b3bd55465"
-  integrity sha512-LfXu+eq3l67RF0AoQ1lUTWUy7+Z3Qs+BHEkM5eah0sR5otOuB0IPFgXySMYHJuZPlYAI+obUnvAA6EBZpS48LQ==
+"@saramorillon/logger@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@saramorillon/logger/-/logger-1.3.0.tgz#c665842c79741d724f001564e392e13e59f0dbe9"
+  integrity sha512-yt1BsFO0VE0awmRdMwGrG7sdzCtdpfenC2H/c/2LB71untE4Yzk5pTcCFoyfJX8y4sk/wADExCIcX/itfpxcWg==
 
 "@sinclair/typebox@^0.24.1":
   version "0.24.51"

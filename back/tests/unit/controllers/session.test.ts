@@ -1,7 +1,7 @@
 import { getMockRes } from '@jest-mock/express'
 import { getSession, login, logout } from '../../../src/controllers/session'
 import { prisma } from '../../../src/prisma'
-import { getMockReq, mockAction, mockUser } from '../../mocks'
+import { getMockReq, mockAction, mockSession, mockUser } from '../../mocks'
 
 describe('login', () => {
   beforeEach(() => {
@@ -21,7 +21,7 @@ describe('login', () => {
     const req = getMockReq({ body: { username: 'username', password: 'password' } })
     const { res } = getMockRes()
     await login(req, res)
-    expect(req.session.user).toEqual({ username: 'username', createdAt: new Date() })
+    expect(req.session.user).toEqual(mockSession())
   })
 
   it('should send 204 when login succeeds', async () => {
@@ -53,17 +53,17 @@ describe('login', () => {
     const { failure } = mockAction(req.logger)
     const { res } = getMockRes()
     await login(req, res)
-    expect(failure).toHaveBeenCalledWith('error')
+    expect(failure).toHaveBeenCalledWith({ message: 'error' })
   })
 })
 
 describe('getSession', () => {
   it('should return session user', () => {
     const req = getMockReq()
-    req.session.user = { username: 'username' }
+    req.session.user = mockSession()
     const { res } = getMockRes()
     getSession(req, res)
-    expect(res.json).toHaveBeenCalledWith({ username: 'username' })
+    expect(res.json).toHaveBeenCalledWith(mockSession())
   })
 })
 

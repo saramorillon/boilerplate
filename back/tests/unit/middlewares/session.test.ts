@@ -1,11 +1,11 @@
 import { getMockRes } from '@jest-mock/express'
 import { session } from '../../../src/middlewares/session'
-import { getMockReq } from '../../mocks'
+import { getMockReq, mockSession } from '../../mocks'
 
 describe('session', () => {
   it('should go next if user is authenticated', () => {
     const req = getMockReq()
-    req.session.user = { username: 'username' }
+    req.session.user = mockSession()
     const { res, next } = getMockRes()
     session(req, res, next)
     expect(next).toHaveBeenCalled()

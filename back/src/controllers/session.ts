@@ -3,6 +3,7 @@ import { Request, Response } from 'express'
 import { z } from 'zod'
 import { prisma } from '../prisma'
 import { settings } from '../settings'
+import { parseError } from '../utils/parseError'
 
 const schema = {
   login: z.object({
@@ -21,7 +22,8 @@ export async function login(req: Request, res: Response): Promise<void> {
     req.session.user = { username: user.username }
     success()
     res.sendStatus(204)
-  } catch (error) {
+  } catch (e) {
+    const error = parseError(e)
     failure(error)
     res.sendStatus(401)
   }
