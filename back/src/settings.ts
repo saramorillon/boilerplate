@@ -1,6 +1,7 @@
 import { ILoggerOptions } from '@saramorillon/logger'
 import { bool, cleanEnv, num, str, url } from 'envalid'
 import session, { SessionOptions } from 'express-session'
+import { HelmetOptions } from 'helmet'
 import filestore from 'session-file-store'
 import { name, version } from '../package.json'
 
@@ -8,6 +9,7 @@ interface ISettings {
   app: { name: string; version: string; host: string; port: number }
   publicDir: string
   session: SessionOptions & { name: NonNullable<SessionOptions['name']> }
+  helmet: HelmetOptions
   logs: ILoggerOptions
 }
 
@@ -39,6 +41,22 @@ export const settings: ISettings = {
       httpOnly: false,
       secure: false,
       sameSite: 'strict',
+    },
+  },
+  helmet: {
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'", "'unsafe-eval'", "'unsafe-inline'"],
+        styleSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          'https://fonts.googleapis.com',
+          'https://unpkg.com',
+          'https://cdn.jsdelivr.net',
+        ],
+        fontSrc: ["'self'", 'https://fonts.gstatic.com'],
+        scriptSrc: ["'self'", "'unsafe-inline'"],
+      },
     },
   },
   logs: {

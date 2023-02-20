@@ -23,7 +23,7 @@ export class App {
       app.use(cors({ credentials: true, origin: settings.app.host }))
       app.use(session(settings.session))
       app.use(logger)
-      app.use(helmet())
+      app.use(helmet(settings.helmet))
       app.use('/api', routes())
       app.get('*', render)
       await new Promise<void>((resolve) => app.listen(settings.app.port, resolve))
