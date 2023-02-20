@@ -9,7 +9,7 @@ export function PublicOutlet(): JSX.Element {
   if (session) return <Navigate to="/" />
   return (
     <>
-      <main className="mx-auto flex-auto" style={{ minHeight: 'calc(100vh - 162px - 96px)' }}>
+      <main className="mx-auto max-width-2" style={{ minHeight: 'calc(100vh - 162px - 96px)' }}>
         <Outlet />
       </main>
       <Footer />
@@ -23,7 +23,7 @@ export function PrivateOutlet(): JSX.Element {
   return (
     <>
       <Header />
-      <main className="mx-auto flex-auto" style={{ minHeight: 'calc(100vh - 162px - 96px - 55px)', minWidth: '60rem' }}>
+      <main className="mx-auto" style={{ minHeight: 'calc(100vh - 162px - 96px - 55px)', minWidth: '60rem' }}>
         <Outlet />
       </main>
       <Footer />
