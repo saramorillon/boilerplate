@@ -51,6 +51,8 @@ FROM base as release
 
 ENV PUBLIC_DIR=/app/dist/public
 
+COPY --from=back --chown=node:node /app/back/package.json /app/package.json
+COPY --from=back --chown=node:node /app/back/prisma/ /app/prisma/
 COPY --from=back --chown=node:node /app/back/node_modules/ /app/node_modules/
 COPY --from=back --chown=node:node /app/back/dist/ /app/dist/
 COPY --from=front --chown=node:node /app/front/dist/ /app/dist/public
@@ -61,4 +63,4 @@ RUN chown -R node:node /app/sessions
 
 USER node
 
-CMD ["yarn", "--cwd", "dist/back", "start"]
+CMD ["yarn", "start"]
