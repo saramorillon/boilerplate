@@ -13,10 +13,12 @@ export function App(): JSX.Element | null {
           <Route path="/login" element={<PublicOutlet />}>
             <Route index element={<Login />} />
           </Route>
-          <Route path="/" element={<PrivateOutlet />}>
-            <Route index element={<Home />} />
+
+          <Route element={<PrivateOutlet />}>
+            <Route path="/" element={<Home />} />
           </Route>
-          <Route path="*" element={<Navigate to="/" replace />} />
+
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>
     </SessionProvider>
