@@ -13,7 +13,7 @@ export class App {
   private logger = new Logger(settings.logs, { app: settings.app })
 
   async run() {
-    const { success, failure } = this.logger.action('app_start')
+    const { success, failure } = this.logger.start('app_start')
     try {
       const app = express()
       app.use(_static(settings.publicDir))

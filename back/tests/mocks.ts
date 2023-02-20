@@ -13,7 +13,7 @@ export function getMockReq(...params: Parameters<typeof _getMockReq>): ReturnTyp
 
 export function mockAction(logger: Logger) {
   const action = { success: jest.fn(), failure: jest.fn() }
-  logger.action = jest.fn().mockReturnValue(action)
+  logger.start = jest.fn().mockReturnValue(action)
   return action
 }
 

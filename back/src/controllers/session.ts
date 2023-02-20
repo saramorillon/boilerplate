@@ -12,7 +12,7 @@ const schema = {
 }
 
 export async function login(req: Request, res: Response): Promise<void> {
-  const { success, failure } = req.logger.action('login')
+  const { success, failure } = req.logger.start('login')
   try {
     const { username, password } = schema.login.parse(req.body)
     const user = await prisma.user.findFirstOrThrow({
@@ -28,13 +28,13 @@ export async function login(req: Request, res: Response): Promise<void> {
 }
 
 export function getSession(req: Request, res: Response): void {
-  const { success } = req.logger.action('get_session')
+  const { success } = req.logger.start('get_session')
   res.json(req.session.user)
   success()
 }
 
 export function logout(req: Request, res: Response): void {
-  const { success, failure } = req.logger.action('logout')
+  const { success, failure } = req.logger.start('logout')
   req.session.destroy((err) => {
     if (err) failure(err)
     else success()
