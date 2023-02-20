@@ -3,7 +3,7 @@ import mockdate from 'mockdate'
 import React from 'react'
 import { getApp } from '../../../../src/services/app'
 import { Footer } from '../../../../src/views/components/Footer'
-import { mock, mockApp, wait } from '../../../mocks'
+import { mockApp, wait } from '../../../mocks'
 
 jest.mock('../../../../src/services/app')
 
@@ -11,7 +11,7 @@ mockdate.set('2022')
 
 describe('Footer', () => {
   beforeEach(() => {
-    mock(getApp).mockResolvedValue(mockApp())
+    jest.mocked(getApp).mockResolvedValue(mockApp())
   })
 
   it('should fetch app', async () => {
@@ -21,10 +21,9 @@ describe('Footer', () => {
   })
 
   it('should render nothing if no app', async () => {
-    mock(getApp).mockResolvedValue(null)
     const { container } = render(<Footer />)
-    await wait()
     expect(container).toBeEmptyDOMElement()
+    await wait()
   })
 
   it('should render app name', async () => {

@@ -4,14 +4,14 @@ import { SessionContext } from '../../../../src/contexts/SessionContext'
 import { Footer } from '../../../../src/views/components/Footer'
 import { Header } from '../../../../src/views/components/Header'
 import { PrivateOutlet, PublicOutlet } from '../../../../src/views/components/Outlet'
-import { mock, mockSession } from '../../../mocks'
+import { mockSession } from '../../../mocks'
 
 jest.mock('../../../../src/views/components/Header')
 jest.mock('../../../../src/views/components/Footer')
 
 beforeEach(() => {
-  mock(Header).mockReturnValue(<span>Header</span>)
-  mock(Footer).mockReturnValue(<span>Footer</span>)
+  jest.mocked(Header).mockReturnValue(<span>Header</span>)
+  jest.mocked(Footer).mockReturnValue(<span>Footer</span>)
 })
 
 describe('PublicOutlet', () => {

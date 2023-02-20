@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 import React, { PropsWithChildren } from 'react'
 import { LinkProps, NavigateProps, NavLinkProps, OutletProps, useParams } from 'react-router-dom'
-import { mock, mockNavigate } from './mocks'
+import { mockNavigate } from './mocks'
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -32,6 +32,6 @@ jest.mock('react-router-dom', () => ({
 
 beforeEach(() => {
   mockNavigate()
-  mock(useParams).mockReturnValue({})
+  jest.mocked(useParams).mockReturnValue({})
   jest.spyOn(console, 'error').mockImplementation(() => undefined)
 })

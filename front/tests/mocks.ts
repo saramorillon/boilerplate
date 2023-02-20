@@ -7,10 +7,6 @@ export async function wait() {
   await act(() => new Promise((resolve) => setTimeout(resolve, 0)))
 }
 
-export function mock(fn: unknown): jest.Mock {
-  return fn as jest.Mock
-}
-
 const { location } = window
 
 export function mockLocation(fns: Partial<Location>): void {
@@ -23,7 +19,7 @@ export function restoreLocation(): void {
 
 export function mockNavigate(): jest.Mock {
   const navigate = jest.fn()
-  mock(useNavigate).mockReturnValue(navigate)
+  jest.mocked(useNavigate).mockReturnValue(navigate)
   return navigate
 }
 

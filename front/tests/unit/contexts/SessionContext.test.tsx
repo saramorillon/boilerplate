@@ -2,13 +2,13 @@ import { render, screen } from '@testing-library/react'
 import React from 'react'
 import { SessionContext, SessionProvider } from '../../../src/contexts/SessionContext'
 import { getSession } from '../../../src/services/session'
-import { mock, wait } from '../../mocks'
+import { mockSession, wait } from '../../mocks'
 
 jest.mock('../../../src/services/session')
 
 describe('SessionContext', () => {
   beforeEach(() => {
-    mock(getSession).mockResolvedValue('session')
+    jest.mocked(getSession).mockResolvedValue(mockSession())
   })
 
   it('should show loader when loading', async () => {
@@ -26,10 +26,10 @@ describe('SessionContext', () => {
   it('should return session', async () => {
     render(
       <SessionProvider>
-        <SessionContext.Consumer>{(value) => <>{value}</>}</SessionContext.Consumer>
+        <SessionContext.Consumer>{(value) => <>{value?.username}</>}</SessionContext.Consumer>
       </SessionProvider>
     )
     await wait()
-    expect(screen.getByText('session')).toBeInTheDocument()
+    expect(screen.getByText('username')).toBeInTheDocument()
   })
 })
