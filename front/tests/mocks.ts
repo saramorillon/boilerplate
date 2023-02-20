@@ -30,7 +30,6 @@ export function mockNavigate(): jest.Mock {
 export function mockSession(session: Partial<ISession> = {}): ISession {
   return {
     username: 'username',
-    createdAt: '2022-01-01T00:00:00.000Z',
     ...session,
   }
 }

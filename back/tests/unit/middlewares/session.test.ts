@@ -5,7 +5,7 @@ import { getMockReq } from '../../mocks'
 describe('session', () => {
   it('should go next if user is authenticated', () => {
     const req = getMockReq()
-    req.session.user = { username: 'username', createdAt: new Date() }
+    req.session.user = { username: 'username' }
     const { res, next } = getMockRes()
     session(req, res, next)
     expect(next).toHaveBeenCalled()

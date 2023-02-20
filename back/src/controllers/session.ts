@@ -18,7 +18,7 @@ export async function login(req: Request, res: Response): Promise<void> {
     const user = await prisma.user.findFirstOrThrow({
       where: { username, password: createHash('sha256').update(password).digest('hex') },
     })
-    req.session.user = { username: user.username, createdAt: user.createdAt }
+    req.session.user = { username: user.username }
     success()
     res.sendStatus(204)
   } catch (error) {

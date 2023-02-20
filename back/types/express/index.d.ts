@@ -11,6 +11,6 @@ declare global {
 
 declare module 'express-session' {
   interface SessionData {
-    user: Pick<User, 'username' | 'createdAt'>
+    user: Pick<User, 'username'>
   }
 }
