@@ -1,0 +1,49 @@
+name: Boilerplate
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install
+        run: yarn install
+        working-directory: backend
+      - name: Build
+        run: yarn tsc
+        working-directory: backend
+      - name: Test
+        run: yarn jest --runInBand
+        working-directory: backend
+
+  frontend:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install
+        run: yarn install
+        working-directory: frontend
+      - name: Build
+        run: yarn tsc
+        working-directory: frontend
+      - name: Test
+        run: yarn jest --runInBand
+        working-directory: frontend
