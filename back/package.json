@@ -16,15 +16,15 @@
     "start": "node dist/src/index.js",
     "start:dev": "nodemon -r dotenv/config --inspect src/index.ts",
     "test": "jest --runInBand",
-    "format": "prettier \"src/**/*.{ts,tsx}\" --write",
-    "lint": "eslint \"src/**/*.{ts,tsx}\""
+    "format": "prettier \"{src,tests}/**/*.ts\" --write",
+    "lint": "eslint \"{src,tests}/**/*.ts\""
   },
   "prisma": {
     "seed": "ts-node --transpile-only prisma/seeds/index.ts"
   },
   "devDependencies": {
     "@jest-mock/express": "^2.0.1",
-    "@saramorillon/eslint-plugin": "^2.0.1",
+    "@saramorillon/eslint-plugin": "^2.0.2",
     "@types/cookie-parser": "^1.4.3",
     "@types/cors": "^2.8.13",
     "@types/express-session": "^1.17.6",

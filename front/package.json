@@ -6,11 +6,11 @@
     "build": "vite build",
     "serve": "vite dev",
     "test": "jest --runInBand",
-    "format": "prettier \"src/**/*.{ts,tsx}\" --write",
+    "format": "prettier \"{src,tests}/**/*.{ts,tsx}\" --write",
     "lint": "eslint \"{tests,src}/**/*.{ts,tsx}\""
   },
   "devDependencies": {
-    "@saramorillon/eslint-plugin": "^2.0.1",
+    "@saramorillon/eslint-plugin": "^2.0.2",
     "@testing-library/dom": "^9.0.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",

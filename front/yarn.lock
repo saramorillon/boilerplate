@@ -909,10 +909,10 @@
   resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.0.2.tgz#1c17eadb2fa77f80a796ad5ea9bf108e6993ef06"
   integrity sha512-GRSOFhJzjGN+d4sKHTMSvNeUPoZiDHWmRnXfzaxrqe7dE/Nzlc8BiMSJdLDESZlndM7jIUrZ/F4yWqVYlI0rwQ==
 
-"@saramorillon/eslint-plugin@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@saramorillon/eslint-plugin/-/eslint-plugin-2.0.1.tgz#fcf3100a35b2d196fad927709c4ed494c3577862"
-  integrity sha512-GWeLBf33BzHtbR0R6Viz5eZYstr1fCeezcSVnHXZMql6d8SFr/mlpYudQIqBTEc+jl1sVBT+xU+kvIXM7hZIjA==
+"@saramorillon/eslint-plugin@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@saramorillon/eslint-plugin/-/eslint-plugin-2.0.2.tgz#f3bef69a6a48c360506bed3e9a579c01d900d1be"
+  integrity sha512-pHfR0aQ8y/Ijzwq6Xei51OjqvMbpgPZxo64svmu9WE+Cxczbu1GxsTqE3EofrafnirgYCPUKD4xTvgCWc5IvQQ==
   dependencies:
     "@typescript-eslint/eslint-plugin" "*"
     "@typescript-eslint/parser" "*"
