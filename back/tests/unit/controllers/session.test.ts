@@ -1,11 +1,10 @@
-import { getMockRes } from '@jest-mock/express'
 import { getSession, login, logout } from '../../../src/controllers/session'
 import { prisma } from '../../../src/prisma'
-import { getMockReq, mockAction, mockSession, mockUser } from '../../mocks'
+import { getMockReq, getMockRes, mockAction, mockSession, mockUser } from '../../mocks'
 
 describe('login', () => {
   beforeEach(() => {
-    jest.spyOn(prisma.user, 'findFirstOrThrow').mockResolvedValue(mockUser())
+    vi.spyOn(prisma.user, 'findFirstOrThrow').mockResolvedValue(mockUser())
   })
 
   it('should get user', async () => {
@@ -32,7 +31,7 @@ describe('login', () => {
   })
 
   it('should send 401 when login fails', async () => {
-    jest.spyOn(prisma.user, 'findFirstOrThrow').mockRejectedValue('error')
+    vi.spyOn(prisma.user, 'findFirstOrThrow').mockRejectedValue('error')
     const req = getMockReq({ body: { username: 'username', password: 'password' } })
     const { res } = getMockRes()
     await login(req, res)
@@ -48,7 +47,7 @@ describe('login', () => {
   })
 
   it('should log failure when login fails', async () => {
-    jest.spyOn(prisma.user, 'findFirstOrThrow').mockRejectedValue('error')
+    vi.spyOn(prisma.user, 'findFirstOrThrow').mockRejectedValue('error')
     const req = getMockReq({ body: { username: 'username', password: 'password' } })
     const { failure } = mockAction(req.logger)
     const { res } = getMockRes()
@@ -70,7 +69,7 @@ describe('getSession', () => {
 describe('logout', () => {
   it('should destroy session', () => {
     const req = getMockReq()
-    req.session.destroy = jest.fn().mockImplementation((fn) => fn())
+    req.session.destroy = vi.fn().mockImplementation((fn) => fn())
     const { res } = getMockRes()
     logout(req, res)
     expect(req.session.destroy).toHaveBeenCalled()
@@ -78,7 +77,7 @@ describe('logout', () => {
 
   it('should clear cookie', () => {
     const req = getMockReq()
-    req.session.destroy = jest.fn().mockImplementation((fn) => fn())
+    req.session.destroy = vi.fn().mockImplementation((fn) => fn())
     const { res } = getMockRes()
     logout(req, res)
     expect(res.clearCookie).toHaveBeenCalledWith('cookie_name')
@@ -86,7 +85,7 @@ describe('logout', () => {
 
   it('should redirect to app host', () => {
     const req = getMockReq()
-    req.session.destroy = jest.fn().mockImplementation((fn) => fn())
+    req.session.destroy = vi.fn().mockImplementation((fn) => fn())
     const { res } = getMockRes()
     logout(req, res)
     expect(res.redirect).toHaveBeenCalledWith('http://app_host.io')
@@ -94,7 +93,7 @@ describe('logout', () => {
 
   it('should log success when logout succeeds', () => {
     const req = getMockReq()
-    req.session.destroy = jest.fn().mockImplementation((fn) => fn())
+    req.session.destroy = vi.fn().mockImplementation((fn) => fn())
     const { success } = mockAction(req.logger)
     const { res } = getMockRes()
     logout(req, res)
@@ -103,7 +102,7 @@ describe('logout', () => {
 
   it('should log failure when logout fails', () => {
     const req = getMockReq()
-    req.session.destroy = jest.fn().mockImplementation((fn) => fn('error'))
+    req.session.destroy = vi.fn().mockImplementation((fn) => fn('error'))
     const { failure } = mockAction(req.logger)
     const { res } = getMockRes()
     logout(req, res)

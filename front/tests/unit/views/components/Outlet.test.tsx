@@ -6,12 +6,12 @@ import { Header } from '../../../../src/views/components/Header'
 import { PrivateOutlet, PublicOutlet } from '../../../../src/views/components/Outlet'
 import { mockSession } from '../../../mocks'
 
-jest.mock('../../../../src/views/components/Header')
-jest.mock('../../../../src/views/components/Footer')
+vi.mock('../../../../src/views/components/Header')
+vi.mock('../../../../src/views/components/Footer')
 
 beforeEach(() => {
-  jest.mocked(Header).mockReturnValue(<span>Header</span>)
-  jest.mocked(Footer).mockReturnValue(<span>Footer</span>)
+  vi.mocked(Header).mockReturnValue(<span>Header</span>)
+  vi.mocked(Footer).mockReturnValue(<span>Footer</span>)
 })
 
 describe('PublicOutlet', () => {
@@ -19,7 +19,7 @@ describe('PublicOutlet', () => {
     render(
       <SessionContext.Provider value={mockSession()}>
         <PublicOutlet />
-      </SessionContext.Provider>
+      </SessionContext.Provider>,
     )
     expect(screen.getByText('Navigate to /')).toBeInTheDocument()
   })
@@ -28,7 +28,7 @@ describe('PublicOutlet', () => {
     render(
       <SessionContext.Provider value={null}>
         <PublicOutlet />
-      </SessionContext.Provider>
+      </SessionContext.Provider>,
     )
     expect(screen.getByText('Outlet')).toBeInTheDocument()
     expect(screen.getByText('Footer')).toBeInTheDocument()
@@ -40,7 +40,7 @@ describe('PrivateOutlet', () => {
     render(
       <SessionContext.Provider value={null}>
         <PrivateOutlet />
-      </SessionContext.Provider>
+      </SessionContext.Provider>,
     )
     expect(screen.getByText('Navigate to /login')).toBeInTheDocument()
   })
@@ -49,7 +49,7 @@ describe('PrivateOutlet', () => {
     render(
       <SessionContext.Provider value={mockSession()}>
         <PrivateOutlet />
-      </SessionContext.Provider>
+      </SessionContext.Provider>,
     )
     expect(screen.getByText('Header')).toBeInTheDocument()
     expect(screen.getByText('Outlet')).toBeInTheDocument()

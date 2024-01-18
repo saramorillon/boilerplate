@@ -1,5 +1,6 @@
 import { act } from 'react-dom/test-utils'
 import { useNavigate } from 'react-router-dom'
+import { Mock } from 'vitest'
 import { IApp } from '../src/models/App'
 import { ISession } from '../src/models/Session'
 
@@ -17,9 +18,9 @@ export function restoreLocation(): void {
   Object.defineProperty(window, 'location', { value: location, writable: false })
 }
 
-export function mockNavigate(): jest.Mock {
-  const navigate = jest.fn()
-  jest.mocked(useNavigate).mockReturnValue(navigate)
+export function mockNavigate(): Mock {
+  const navigate = vi.fn()
+  vi.mocked(useNavigate).mockReturnValue(navigate)
   return navigate
 }
 

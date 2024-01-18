@@ -6,44 +6,48 @@ on:
       - master
 
 jobs:
-  backend:
+  back:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x]
     steps:
-      - uses: actions/checkout@v1
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: Install
-        run: yarn install
-        working-directory: backend
-      - name: Build
-        run: yarn tsc
-        working-directory: backend
-      - name: Test
-        run: yarn jest --runInBand
-        working-directory: backend
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-  frontend:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x]
-    steps:
-      - uses: actions/checkout@v1
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - name: Setup Node
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 18
+
       - name: Install
         run: yarn install
-        working-directory: frontend
+        working-directory: back
+
       - name: Build
-        run: yarn tsc
-        working-directory: frontend
+        run: yarn build
+        working-directory: back
+
       - name: Test
-        run: yarn jest --runInBand
-        working-directory: frontend
+        run: yarn vitest run
+        working-directory: back
+
+  front:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install
+        run: yarn install
+        working-directory: front
+
+      - name: Build
+        run: yarn build
+        working-directory: front
+
+      - name: Test
+        run: yarn vitest run
+        working-directory: front

@@ -15,14 +15,14 @@ describe('FetchContainer', () => {
   it('should render loader when loading without data', async () => {
     render(
       <FetchContainer
-        fetchFn={jest.fn().mockResolvedValue('Data')}
+        fetchFn={vi.fn().mockResolvedValue('Data')}
         defaultValue={null}
         loadingMessage="Loading data"
         errorMessage="Data error"
         notFoundMessage="Data not found"
       >
         {children}
-      </FetchContainer>
+      </FetchContainer>,
     )
     expect(screen.getByText('Loading data')).toBeInTheDocument()
     await wait()
@@ -31,14 +31,14 @@ describe('FetchContainer', () => {
   it('should render error message if error', async () => {
     render(
       <FetchContainer
-        fetchFn={jest.fn().mockRejectedValue(new Error())}
+        fetchFn={vi.fn().mockRejectedValue(new Error())}
         defaultValue={null}
         loadingMessage="Loading data"
         errorMessage="Data error"
         notFoundMessage="Data not found"
       >
         {children}
-      </FetchContainer>
+      </FetchContainer>,
     )
     await wait()
     expect(screen.getByText('Data error')).toBeInTheDocument()
@@ -47,14 +47,14 @@ describe('FetchContainer', () => {
   it('should render not found message if no data', async () => {
     render(
       <FetchContainer
-        fetchFn={jest.fn().mockResolvedValue(null)}
+        fetchFn={vi.fn().mockResolvedValue(null)}
         defaultValue={null}
         loadingMessage="Loading data"
         errorMessage="Data error"
         notFoundMessage="Data not found"
       >
         {children}
-      </FetchContainer>
+      </FetchContainer>,
     )
     await wait()
     expect(screen.getByText('Data not found')).toBeInTheDocument()
@@ -63,14 +63,14 @@ describe('FetchContainer', () => {
   it('should render loader when loading with data', async () => {
     render(
       <FetchContainer
-        fetchFn={jest.fn().mockResolvedValue('Data')}
+        fetchFn={vi.fn().mockResolvedValue('Data')}
         defaultValue={null}
         loadingMessage="Loading data"
         errorMessage="Data error"
         notFoundMessage="Data not found"
       >
         {children}
-      </FetchContainer>
+      </FetchContainer>,
     )
     await wait()
     fireEvent.click(screen.getByText('Refresh'))
@@ -81,14 +81,14 @@ describe('FetchContainer', () => {
   it('should decrease children opacity when loading with data', async () => {
     render(
       <FetchContainer
-        fetchFn={jest.fn().mockResolvedValue('Data')}
+        fetchFn={vi.fn().mockResolvedValue('Data')}
         defaultValue={null}
         loadingMessage="Loading data"
         errorMessage="Data error"
         notFoundMessage="Data not found"
       >
         {children}
-      </FetchContainer>
+      </FetchContainer>,
     )
     await wait()
     fireEvent.click(screen.getByText('Refresh'))
@@ -99,14 +99,14 @@ describe('FetchContainer', () => {
   it('should not render loader when not loading', async () => {
     render(
       <FetchContainer
-        fetchFn={jest.fn().mockResolvedValue('Data')}
+        fetchFn={vi.fn().mockResolvedValue('Data')}
         defaultValue={null}
         loadingMessage="Loading data"
         errorMessage="Data error"
         notFoundMessage="Data not found"
       >
         {children}
-      </FetchContainer>
+      </FetchContainer>,
     )
     await wait()
     expect(screen.queryByText('Loading data')).not.toBeInTheDocument()
@@ -115,14 +115,14 @@ describe('FetchContainer', () => {
   it('should not decrease children opacity when not loading', async () => {
     render(
       <FetchContainer
-        fetchFn={jest.fn().mockResolvedValue('Data')}
+        fetchFn={vi.fn().mockResolvedValue('Data')}
         defaultValue={null}
         loadingMessage="Loading data"
         errorMessage="Data error"
         notFoundMessage="Data not found"
       >
         {children}
-      </FetchContainer>
+      </FetchContainer>,
     )
     await wait()
     fireEvent.click(screen.getByText('Refresh'))

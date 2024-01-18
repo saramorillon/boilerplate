@@ -1,7 +1,7 @@
 import { Logger } from '@saramorillon/logger'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
-import express, { json, static as _static, urlencoded } from 'express'
+import express, { static as _static, json, urlencoded } from 'express'
 import session from 'express-session'
 import helmet from 'helmet'
 import { render } from './controllers/render'
